@@ -77,7 +77,10 @@ Group13_Automarker-main
 ## Key Classes
 
 - **AutoMarkerMain.java**: The main entry point of the application.
-- **BaseEvaluator.java**: Abstract base class for all evaluators.
+- **BaseEvaluator.java**: Template class for all evaluators.
 - **ChatBotEvaluator.java**: Handles chatbot evaluation.
+- **ChatBotPlatformEvaluator.java**: Handles chatbot platform evaluation.
+- **ChatBotSimulationEvaluator.java**: Handles chatbot simulation evaluation.
+- **ChatBotGeneratorEvaluator.java**: Handles chatbot generation evaluation.
 - **EvaluatorFactory.java**: Factory for creating evaluator objects.
 - **ZipHandler.java**: Utility for zip file extraction and management.
