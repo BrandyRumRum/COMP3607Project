@@ -58,23 +58,20 @@ public class ChatBotEvaluator extends BaseEvaluator {
         try {
             Field messageLimit = clazz.getDeclaredField("messageLimit");
 
-            // Check if the field is of type int
             if (messageLimit.getType().equals(int.class)) {
                 totalScore += 1;
             } else {
                 feedback.add("Attribute 'messageLimit' should be of type int.");
             }
 
-            // Check if the field is static
             if (Modifier.isStatic(messageLimit.getModifiers())) {
                 totalScore += 1;
             } else {
                 feedback.add("Attribute 'messageLimit' should be static.");
             }
 
-            // Check if the field is initialized to 10
             messageLimit.setAccessible(true);
-            int value = messageLimit.getInt(null); // Static field, so pass null
+            int value = messageLimit.getInt(null); 
             if (value == 10) {
                 totalScore += 1;
             } else {
@@ -93,14 +90,12 @@ public class ChatBotEvaluator extends BaseEvaluator {
         try {
             Field messageNumber = clazz.getDeclaredField("messageNumber");
 
-            // Check if the field is of type int
             if (messageNumber.getType().equals(int.class)) {
                 totalScore += 1;
             } else {
                 feedback.add("Attribute 'messageNumber' should be of type int.");
             }
 
-            // Check if the field is static
             if (Modifier.isStatic(messageNumber.getModifiers())) {
                 totalScore += 1;
             } else {
@@ -117,10 +112,8 @@ public class ChatBotEvaluator extends BaseEvaluator {
         try {
             Constructor<?> defaultConstructor = clazz.getConstructor();
 
-            // Check if the default constructor initializes the attributes correctly
             Object instance = defaultConstructor.newInstance();
 
-            // Reflectively check attribute initializations
             Field chatBotName = clazz.getDeclaredField("chatBotName");
             chatBotName.setAccessible(true);
             if ("ChatGPT-3.5".equals(chatBotName.get(instance))) {
@@ -158,40 +151,33 @@ public class ChatBotEvaluator extends BaseEvaluator {
 
     private void evaluateOverloadedChatBotConstructor(Class<?> clazz) {
         try {
-            // Check for the parameterized constructor with an int parameter
             Constructor<?> paramConstructor = clazz.getConstructor(int.class);
-            totalScore += 1; // Award 1 mark for the existence of the parameterized constructor
+            totalScore += 1; 
 
-            // Create an instance using the parameterized constructor with a sample LLMCode
-            // (e.g., 1)
             Object instance = paramConstructor.newInstance(1);
 
-            // Reflectively check that 'chatBotName' is initialized correctly
             Field chatBotName = clazz.getDeclaredField("chatBotName");
             chatBotName.setAccessible(true);
 
-            // Define the expected chatbot name for the provided LLMCode
-            String expectedChatBotName = getExpectedChatBotName(1); // Expected LLM name for code 1
+            String expectedChatBotName = getExpectedChatBotName(1);
             if (expectedChatBotName.equals(chatBotName.get(instance))) {
-                totalScore += 1; // Award 1 mark for correct initialization of 'chatBotName'
+                totalScore += 1; 
             } else {
                 feedback.add("Parameterized constructor should initialize 'chatBotName' based on the LLMCode.");
             }
 
-            // Check that 'numResponsesGenerated' is initialized to 0
             Field numResponsesGenerated = clazz.getDeclaredField("numResponsesGenerated");
             numResponsesGenerated.setAccessible(true);
             if ((int) numResponsesGenerated.get(instance) == 0) {
-                totalScore += 0.5; // Award 0.5 mark for initializing 'numResponsesGenerated' to 0
+                totalScore += 0.5; 
             } else {
                 feedback.add("Parameterized constructor should initialize 'numResponsesGenerated' to 0.");
             }
 
-            // Check that 'messageNumber' is initialized to 0
             Field messageNumber = clazz.getDeclaredField("messageNumber");
             messageNumber.setAccessible(true);
             if ((int) messageNumber.get(instance) == 0) {
-                totalScore += 0.5; // Award 0.5 mark for initializing 'messageNumber' to 0
+                totalScore += 0.5; 
             } else {
                 feedback.add("Parameterized constructor should initialize 'messageNumber' to 0.");
             }
@@ -222,7 +208,6 @@ public class ChatBotEvaluator extends BaseEvaluator {
 
     private void evaluateGetNumResponsesGenerated(Class<?> clazz) {
         try {
-            // Check getNumResponsesGenerated() - Accessor for numResponsesGenerated
             Method getNumResponsesGenerated = clazz.getDeclaredMethod("getNumResponsesGenerated");
             if (getNumResponsesGenerated.getReturnType().equals(int.class)) {
                 totalScore += 1; // Award 1 mark for correct return type
@@ -239,20 +224,18 @@ public class ChatBotEvaluator extends BaseEvaluator {
 
     private void evaluateGetTotalNumResponsesGenerated(Class<?> clazz) {
         try {
-            // Check if the method exists
             Method getTotalNumResponsesGenerated = clazz.getDeclaredMethod("getTotalNumResponsesGenerated");
-            totalScore += 0.5; // Award 0.5 mark for the method's existence
-
-            // Check if the method is static
+            totalScore += 0.5; 
+            
             if (Modifier.isStatic(getTotalNumResponsesGenerated.getModifiers())) {
-                totalScore += 0.5; // Award 0.5 mark for being static
+                totalScore += 0.5;
             } else {
                 feedback.add("Method 'getTotalNumResponsesGenerated' should be static.");
             }
 
             // Check if the method returns type int
             if (getTotalNumResponsesGenerated.getReturnType().equals(int.class)) {
-                totalScore += 1; // Award 1 mark for the correct return type
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'getTotalNumResponsesGenerated' should return type int.");
             }
@@ -266,20 +249,17 @@ public class ChatBotEvaluator extends BaseEvaluator {
 
     private void evaluateGetTotalNumMessagesRemaining(Class<?> clazz) {
         try {
-            // Check if the method exists
             Method getTotalNumMessagesRemaining = clazz.getDeclaredMethod("getTotalNumMessagesRemaining");
-            totalScore += 1; // Award 1 mark for the method's existence
+            totalScore += 1;
 
-            // Check if the method is static
             if (Modifier.isStatic(getTotalNumMessagesRemaining.getModifiers())) {
-                totalScore += 1; // Award 1 mark for being static
+                totalScore += 1;
             } else {
                 feedback.add("Method 'getTotalNumMessagesRemaining' should be static.");
             }
 
-            // Check if the method returns type int
             if (getTotalNumMessagesRemaining.getReturnType().equals(int.class)) {
-                totalScore += 1; // Award 1 mark for the correct return type
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'getTotalNumMessagesRemaining' should return type int.");
             }
@@ -293,20 +273,17 @@ public class ChatBotEvaluator extends BaseEvaluator {
 
     private void evaluateLimitReached(Class<?> clazz) {
         try {
-            // Check if the method exists
             Method limitReached = clazz.getDeclaredMethod("limitReached");
-            totalScore += 1; // Award 1 mark for the method's existence
+            totalScore += 1; 
 
-            // Check if the method is static
             if (Modifier.isStatic(limitReached.getModifiers())) {
-                totalScore += 1; // Award 1 mark for being static
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'limitReached' should be static.");
             }
 
-            // Check if the method returns type boolean
             if (limitReached.getReturnType().equals(boolean.class)) {
-                totalScore += 1; // Award 1 mark for the correct return type
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'limitReached' should return type boolean.");
             }
@@ -321,36 +298,31 @@ public class ChatBotEvaluator extends BaseEvaluator {
 
     private void evaluateGenerateResponse(Class<?> clazz) {
         try {
-            // Check if the method exists
             Method generateResponse = clazz.getDeclaredMethod("generateResponse");
-            totalScore += 1; // Award 1 mark for the method's existence
+            totalScore += 1; 
 
-            // Check if the method is private
             if (Modifier.isPrivate(generateResponse.getModifiers())) {
-                totalScore += 1; // Award 1 mark for being private
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'generateResponse' should be private.");
             }
 
-            // Check if the method returns type String
             if (generateResponse.getReturnType().equals(String.class)) {
                 totalScore += 1; // Award 1 mark for the correct return type
             } else {
                 feedback.add("Method 'generateResponse' should return type String.");
             }
 
-            // Check if the method increments the chatbot's message count
             Field numResponsesGenerated = clazz.getDeclaredField("numResponsesGenerated");
             if (numResponsesGenerated != null) {
-                totalScore += 1; // Award 1 mark for interacting with 'numResponsesGenerated'
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'generateResponse' should increment the chatbot's message count.");
             }
 
-            // Check if the method increments the total message count
             Field messageNumber = clazz.getDeclaredField("messageNumber");
             if (messageNumber != null && Modifier.isStatic(messageNumber.getModifiers())) {
-                totalScore += 1; // Award 1 mark for interacting with the static 'messageNumber'
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'generateResponse' should increment the total message count.");
             }
@@ -367,29 +339,26 @@ public class ChatBotEvaluator extends BaseEvaluator {
 
     private void evaluatePrompt(Class<?> clazz) {
         try {
-            // Check if the prompt method exists
             Method prompt = clazz.getDeclaredMethod("prompt", String.class);
-            totalScore += 1; // Award 1 mark for the method's existence
+            totalScore += 1; 
 
-            // Check if the prompt method returns type String
+
             if (prompt.getReturnType().equals(String.class)) {
-                totalScore += 1; // Award 1 mark for the correct return type
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'prompt(String requestMessage)' should return type String.");
             }
 
-            // Check if the prompt method calls limitReached
             Method limitReached = clazz.getDeclaredMethod("limitReached");
             if (prompt.toString().contains(limitReached.getName())) {
-                totalScore += 1; // Award 1 mark for calling 'limitReached'
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'prompt' should call 'limitReached' to check the message limit.");
             }
 
-            // Check if the prompt method calls generateResponse
             Method generateResponse = clazz.getDeclaredMethod("generateResponse");
             if (prompt.toString().contains(generateResponse.getName())) {
-                totalScore += 1; // Award 1 mark for calling 'generateResponse'
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'prompt' should call 'generateResponse' to process incoming messages.");
             }
@@ -404,26 +373,23 @@ public class ChatBotEvaluator extends BaseEvaluator {
 
     private void evaluateToString(Class<?> clazz) {
         try {
-            // Check if the toString method exists
+ 
             Method toStringMethod = clazz.getDeclaredMethod("toString");
-            totalScore += 1; // Award 1 mark for the method's existence
-
-            // Check if the toString method returns type String
+            totalScore += 1; 
             if (toStringMethod.getReturnType().equals(String.class)) {
-                totalScore += 1; // Award 1 mark for the correct return type
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'toString()' should return type String.");
             }
 
-            // Check if the toString method references getChatBotName
             Method getChatBotName = clazz.getDeclaredMethod("getChatBotName");
             if (toStringMethod.toString().contains(getChatBotName.getName())) {
-                totalScore += 1; // Award 1 mark for including 'getChatBotName'
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'toString' should include the chatbot's name using 'getChatBotName'.");
             }
 
-            // Check if the toString method references getNumResponsesGenerated
+            
             Method getNumResponsesGenerated = clazz.getDeclaredMethod("getNumResponsesGenerated");
             if (toStringMethod.toString().contains(getNumResponsesGenerated.getName())) {
                 totalScore += 1; // Award 1 mark for including 'getNumResponsesGenerated'
