@@ -210,7 +210,7 @@ public class ChatBotEvaluator extends BaseEvaluator {
         try {
             Method getNumResponsesGenerated = clazz.getDeclaredMethod("getNumResponsesGenerated");
             if (getNumResponsesGenerated.getReturnType().equals(int.class)) {
-                totalScore += 1; // Award 1 mark for correct return type
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'getNumResponsesGenerated' should return type int.");
             }
@@ -233,7 +233,6 @@ public class ChatBotEvaluator extends BaseEvaluator {
                 feedback.add("Method 'getTotalNumResponsesGenerated' should be static.");
             }
 
-            // Check if the method returns type int
             if (getTotalNumResponsesGenerated.getReturnType().equals(int.class)) {
                 totalScore += 1; 
             } else {
@@ -308,7 +307,7 @@ public class ChatBotEvaluator extends BaseEvaluator {
             }
 
             if (generateResponse.getReturnType().equals(String.class)) {
-                totalScore += 1; // Award 1 mark for the correct return type
+                totalScore += 1; 
             } else {
                 feedback.add("Method 'generateResponse' should return type String.");
             }
@@ -392,7 +391,7 @@ public class ChatBotEvaluator extends BaseEvaluator {
             
             Method getNumResponsesGenerated = clazz.getDeclaredMethod("getNumResponsesGenerated");
             if (toStringMethod.toString().contains(getNumResponsesGenerated.getName())) {
-                totalScore += 1; // Award 1 mark for including 'getNumResponsesGenerated'
+                totalScore += 1; 
             } else {
                 feedback.add(
                         "Method 'toString' should include the number of responses using 'getNumResponsesGenerated'.");
