@@ -15,12 +15,11 @@ public abstract class BaseEvaluator {
         teardown();
     }
 
-    // Initial setup before evaluation
     protected void setup() {
         feedback.add("Starting evaluation...");
     }
 
-    // Abstract methods for evaluating attributes and methods, to be implemented by subclasses
+    // Abstract methods for evaluating attributes and methods
     protected abstract void evaluateAttributes(Class<?> clazz);
     protected abstract void evaluateMethods(Class<?> clazz);
 
@@ -29,19 +28,17 @@ public abstract class BaseEvaluator {
         feedback.add("Total Score: " + totalScore);
     }
 
-    // Cleanup and display feedback after evaluation
     protected void teardown() {
         feedback.add("Evaluation completed.");
         displayFeedback();
     }
 
-    // Display the feedback generated during evaluation
     private void displayFeedback() {
         for (String message : feedback) {
             System.out.println(message);
         }
     }
-
+    
     // Observer method to log issues during evaluation
     protected void notifyObserver(String issue) {
         feedback.add("Observer notification: " + issue);
