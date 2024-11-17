@@ -1,20 +1,23 @@
 package project;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+
+import java.lang.reflect.*;
 
 public class ChatBotGeneratorEvaluator extends BaseEvaluator {
 
     @Override
     protected void evaluateAttributes(Class<?> clazz) {
-        feedback.add("No specific attributes required for ChatBotGenerator.");
     }
 
     @Override
     protected void evaluateMethods(Class<?> clazz) {
+        evaluateGenerateChatBotLLM(clazz);
+    }
+
+    private void evaluateGenerateChatBotLLM(Class<?> clazz) {
         try {
             Method generateChatBotLLM = clazz.getDeclaredMethod("generateChatBotLLM", int.class);
-            if (generateChatBotLLM.getReturnType().equals(String.class) && Modifier.isStatic(generateChatBotLLM.getModifiers())) {
+            if (generateChatBotLLM.getReturnType().equals(String.class)
+                    && Modifier.isStatic(generateChatBotLLM.getModifiers())) {
                 totalScore += 7;
                 testGenerateChatBotLLMMethod(clazz, generateChatBotLLM);
             } else {
@@ -26,7 +29,7 @@ public class ChatBotGeneratorEvaluator extends BaseEvaluator {
         }
     }
 
-    // Testing  behavior of generateChatBot with different input codes
+    // Testing behavior of generateChatBot with different input codes
     private void testGenerateChatBotLLMMethod(Class<?> clazz, Method method) {
         try {
             String result1 = (String) method.invoke(null, 1);
