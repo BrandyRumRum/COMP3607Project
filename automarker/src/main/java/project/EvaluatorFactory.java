@@ -7,9 +7,9 @@ public class EvaluatorFactory {
                 return new ChatBotEvaluator();
             case "ChatBotPlatform":
                 return new ChatBotPlatformEvaluator();
-            case: "ChatBotGenerator":
-                return new ChatBotGeneratorEvaluator():
-            case: "ChatBotSimulation":
+            case "ChatBotGenerator":
+                return new ChatBotGeneratorEvaluator();
+            case "ChatBotSimulation":
                 return new ChatBotSimulationEvaluator();
             default:
                 throw new IllegalArgumentException("Unknown evaluator type: " + className);
