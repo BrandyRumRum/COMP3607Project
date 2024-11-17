@@ -4,19 +4,6 @@ A Java-based automated grading tool designed to extract, compile, and evaluate J
 
 ---
 
-## **Table of Contents**
-
-1. [Overview](#overview)  
-2. [Features](#features)  
-3. [Installation](#installation)  
-4. [Usage](#usage)  
-5. [Directory Structure](#directory-structure)  
-6. [Technologies Used](#technologies-used)  
-7. [Contributing](#contributing)  
-8. [License](#license)  
-
----
-
 ## **Overview**
 
 The **Group13 AutoMarker** is a tool designed to assist instructors in automatically grading Java assignments. It extracts `.java` files from a ZIP archive, evaluates the submissions based on specific criteria, and generates a score report for each student.
@@ -31,18 +18,66 @@ The **Group13 AutoMarker** is a tool designed to assist instructors in automatic
   - `ChatBotEvaluator`
   - `ChatBotPlatformEvaluator`
   - `ChatBotSimulationEvaluator`
+  - `ChatBotGenerator`
 - Summary report generation with individual scores.
 - Handles invalid submissions gracefully.
 
 ---
 
-## **Installation**
+## Project Structure
 
-### Prerequisites
-- **Java Development Kit (JDK)** 11 or later
-- **Maven** (recommended for dependency management)
-### Steps
-1. Clone the repository: ```git clone https://github.com/yourusername/group13-automarker.git```
-3. Navigate to the project directory: ```cd group13-automarker```
-4. Compile the project: ```mvn compile```
-5. Run the application: ```mvn exec:java -Dexec.mainClass="project.AutoMarkerMain"```
+```
+Group13_Automarker-main
+├── automarker
+│   ├── pom.xml               # Maven configuration file
+│   ├── src                   # Source directory
+│   │   ├── main
+│   │   │   └── java
+│   │   │       └── project   # Java source files
+│   │   │           ├── A1_Files               # Resource files
+│   │   │           ├── AutoMarkerMain.java    # Main entry point
+│   │   │           ├── BaseEvaluator.java     # Base class for evaluators
+│   │   │           ├── ChatBotEvaluator.java  # Evaluator for chatbot functionality
+│   │   │           ├── ChatBotGeneratorEvaluator.java
+│   │   │           ├── ChatBotPlatformEvaluator.java
+│   │   │           ├── ChatBotSimulationEvaluator.java
+│   │   │           ├── EvaluatorFactory.java  # Factory for creating evaluators
+│   │   │           └── ZipHandler.java        # Utility for zip file handling
+│   │   └── test            # Test directory (if applicable)
+│   └── target              # Compiled output directory
+└── README.md               # Project documentation
+```
+
+## Prerequisites
+
+- **Java**: Ensure you have JDK 8 or higher installed.
+- **Maven**: Required for dependency management and building the project.
+
+## Getting Started
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/your-repo/automarker.git
+   cd automarker
+   ```
+
+2. Build the project using Maven:
+
+   ```bash
+   mvn clean install
+   ```
+
+3. Run the application:
+
+   ```bash
+   java -cp target/automarker-1.0-SNAPSHOT.jar project.AutoMarkerMain
+   ```
+
+## Key Classes
+
+- **AutoMarkerMain.java**: The main entry point of the application.
+- **BaseEvaluator.java**: Abstract base class for all evaluators.
+- **ChatBotEvaluator.java**: Handles chatbot evaluation.
+- **EvaluatorFactory.java**: Factory for creating evaluator objects.
+- **ZipHandler.java**: Utility for zip file extraction and management.
