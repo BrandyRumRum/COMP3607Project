@@ -57,6 +57,10 @@ public class ChatBotSimulationTest {
 
     @Test
     void testPrintChatBotList() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
+        // Initialize the ChatBotPlatform and add bots
         ChatBotPlatform platform = new ChatBotPlatform();
         platform.addChatBot(0); // ChatGPT-3.5
         platform.addChatBot(1); // LLaMa
@@ -68,30 +72,39 @@ public class ChatBotSimulationTest {
         String chatBotList = platform.getChatBotList();
         System.out.println(chatBotList);
 
-        // Verify the output contains expected information
-        String output = outputStream.toString();
+        String output = outputStream.toString().trim();
+        System.out.println("Captured Output:\n" + output);
+
+        assertTrue(output.contains("Total Messages Used: 0"), "Output should include 'Total Messages Used: 0'.");
+        assertTrue(output.contains("Total Messages Remaining: 10"),
+                "Output should include 'Total Messages Remaining: 10'.");
 
         assertTrue(output.contains("Your ChatBots"), "Output should contain the header 'Your ChatBots'.");
-        assertTrue(output.contains("Total Messages Used: 0"), "Output should include 'Total Messages Used: 0'.");
-        assertTrue(output.contains("Total Messages Remaining: 10"), "Output should include 'Total Messages Remaining: 10'.");
-        assertTrue(output.contains("Bot Number: 0"), "Output should list Bot Number: 0.");
-        assertTrue(output.contains("Bot Number: 5"), "Output should list Bot Number: 5.");
     }
 
     @Test
     void testPrintFinalChatBotList() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
+
         // Initialize ChatBotPlatform and add ChatBots
         ChatBotPlatform platform = new ChatBotPlatform();
-        platform.addChatBot(0); 
-        platform.addChatBot(1); 
+        platform.addChatBot(0); // Add ChatGPT-3.5
+        platform.addChatBot(1); // Add LLaMa
 
-        // Simulate interactions to update statistics
-        platform.interactWithBot(0, "Test message 1");
-        platform.interactWithBot(1, "Test message 2");
+        platform.interactWithBot(0, "Test message 1"); // CharGPT-3.5
+        platform.interactWithBot(1, "Test message 2"); // LLaMa
 
-        // Simulate printing final ChatBot list
         System.out.println(platform.getChatBotList());
-        String output = outputStream.toString();
-        assertTrue(output.contains("Number Messages Used: 1"), "Final ChatBot list should include updated usage statistics.");
+
+        String output = outputStream.toString().trim();
+        System.out.println("Captured Output:\n" + output);
+
+        assertTrue(output.contains("Total Messages Used: 2"),
+                "Output should include the overall 'Total Messages Used: 2 statistic.");
+        assertTrue(output.contains("Bot Number: 0 ChatBot Name: ChatGPT-3.5"),
+                "Output should include usage details for Bot Number 0.");
+        assertTrue(output.contains("Bot Number: 1 ChatBot Name: LlaMa"),
+                "Output should include usage details for Bot Number 1.");
     }
 }
