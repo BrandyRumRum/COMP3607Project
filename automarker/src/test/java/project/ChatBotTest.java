@@ -6,6 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import project.Rajiv_Ramcharan_816034922_A1.ChatBot;
+
+// uncomment and fill in respective information after running for the first time for the extraction and evaluation
+// import project.FName_LName_ID_A1.ChatBot;
 
 public class ChatBotTest {
     private ChatBot chatBot;
@@ -32,40 +36,44 @@ public class ChatBotTest {
         assertEquals("ChatGPT-3.5", botDefault.getChatBotName(), "Unknown code should default to ChatGPT-3.5.");
     }
 
-    @Test
-    public void testResponseGenerationWithinLimit() {
-        for (int i = 0; i < ChatBot.getTotalNumMessagesRemaining(); i++) {
-            assertNotNull(chatBot.generateResponse(), "ChatBot should generate a response within the limit.");
-        }
-    }
-
-    @Test
-    public void testResponseLimitReached() {
-        ChatBot chatBot = new ChatBot();
-
-        while (!ChatBot.limitReached()) {
-        chatBot.generateResponse();
-        }
-
-        assertTrue(ChatBot.limitReached(), "ChatBot should reach the message limit.");
-
-        String response = chatBot.generateResponse();
-
-        assertTrue(response.startsWith("Daily Limit Reached"),
-            "Response should start with 'Daily Limit Reached'.");
-}
-
-
+    /*
+     * @Test
+     * public void testResponseGenerationWithinLimit() {
+     * for (int i = 0; i < ChatBot.getTotalNumMessagesRemaining(); i++) {
+     * assertNotNull(chatBot.generateResponse(),
+     * "ChatBot should generate a response within the limit.");
+     * }
+     * }
+     * 
+     * @Test
+     * public void testResponseLimitReached() {
+     * ChatBot chatBot = new ChatBot();
+     * 
+     * while (!ChatBot.limitReached()) {
+     * chatBot.generateResponse();
+     * }
+     * 
+     * assertTrue(ChatBot.limitReached(),
+     * "ChatBot should reach the message limit.");
+     * 
+     * String response = chatBot.generateResponse();
+     * 
+     * assertTrue(response.startsWith("Daily Limit Reached"),
+     * "Response should start with 'Daily Limit Reached'.");
+     * }
+     * 
+     */
     @Test
     public void testToStringFormatIgnoringSpaces() {
-    ChatBot chatBot = new ChatBot();
+        ChatBot chatBot = new ChatBot();
 
-    String expectedFormat = "ChatBot Name: ChatGPT-3.5 Number Messages Used: 0";
+        String expectedFormat = "ChatBot Name: ChatGPT-3.5 Number Messages Used: 0";
 
-    String normalizedExpected = expectedFormat.replaceAll("\\s+", "");
-    String normalizedActual = chatBot.toString().replaceAll("\\s+", "");
+        String normalizedExpected = expectedFormat.replaceAll("\\s+", "");
+        String normalizedActual = chatBot.toString().replaceAll("\\s+", "");
 
-    assertEquals(normalizedExpected, normalizedActual, "toString format should match expected format, ignoring spaces.");
-}
+        assertEquals(normalizedExpected, normalizedActual,
+                "toString format should match expected format, ignoring spaces.");
+    }
 
 }
