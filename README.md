@@ -35,6 +35,7 @@ Group13_Automarker-main
 │   │   │   └── java
 │   │   │       └── project   # Java source files
 │   │   │           ├── A1_Files               # Resource files
+│   │   │             ├── Feedback               # Folder that contains the PDFs of student's marks
 │   │   │           ├── AutoMarkerMain.java    # Main entry point
 │   │   │           ├── BaseEvaluator.java     # Base class for evaluators
 │   │   │           ├── ChatBotEvaluator.java  # Evaluator for chatbot functionality
@@ -42,8 +43,9 @@ Group13_Automarker-main
 │   │   │           ├── ChatBotPlatformEvaluator.java
 │   │   │           ├── ChatBotSimulationEvaluator.java
 │   │   │           ├── EvaluatorFactory.java  # Factory for creating evaluators
-│   │   │           └── ZipHandler.java        # Utility for zip file handling
-│   │   └── test            # Test directory (if applicable)
+│   │   │           ├── ZipHandler.java        # Utility for zip file handling
+│   │   │           └── FeedbackPDFGenerator.java  # Utility for zip file handling
+│   │   └── test            # Test directory containing JUnit tests
 │   └── target              # Compiled output directory
 └── README.md               # Project documentation
 ```
@@ -91,3 +93,12 @@ Group13_Automarker-main
 - **ChatBotGeneratorEvaluator.java**: Handles chatbot generation evaluation.
 - **EvaluatorFactory.java**: Factory for creating evaluator objects.
 - **ZipHandler.java**: Utility for zip file extraction and management.
+- **FeedbackPDFGenerator.java**: Utility for displaying student feedback in a PDF.
+
+## Testing Classes
+- **ChatBotGeneratorTest.java**: JUnit test suite for testing the ChatBotGenerator class.
+- **ChatBotTest.java**: JUnit test suite for testing the ChatBotTest class.
+- **ChatBotPlatformTest.java**: JUnit test suite for testing the ChatBotPlatformTest class.
+- **ChatBotSimulationTest.java**: JUnit test suite for testing the ChatBotSimulationTest class.
+
+
