@@ -17,7 +17,7 @@ public class ChatBotSimulationEvaluator extends BaseEvaluator {
 
     private void evaluateMainMethod(Class<?> clazz) {
         try {
-s
+
             Method mainMethod = clazz.getDeclaredMethod("main", String[].class);
 
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
