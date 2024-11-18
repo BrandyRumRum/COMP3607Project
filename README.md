@@ -6,7 +6,7 @@ A Java-based automated grading tool designed to extract, compile, and evaluate J
 
 ## **Overview**
 
-The **Group13 AutoMarker** is a tool designed to assist instructors in automatically grading Java assignments. It extracts `.java` files from a ZIP archive, evaluates the submissions based on specific criteria, and generates a score report for each student.
+This automarker is a tool designed to assist instructors in automatically grading Java assignments. It extracts `.java` files from a ZIP archive, evaluates the submissions based on a marking rubric, and generates a PDF of results for each student.
 
 ---
 
