@@ -55,25 +55,32 @@ Group13_Automarker-main
 
 ## Getting Started
 
-1. Clone the repository:
+1. Download the files as a zip
+
+
+2. Open the automarker folder on your IDE of your choice
+
+
+3. Place the correctly named and zipped student files in the path:
 
    ```bash
-   git clone https://github.com/your-repo/automarker.git
-   cd automarker
+   src\main\java\project\A1_Files\
    ```
+   *Note the student's zip file must contain a parent folder containing their assignment files, the automarker will not work otherwise
 
-2. Build the project using Maven:
+   
+5. Run the AutoMarkerMain class and feedback will be provided in the Feedback folder located in:
 
    ```bash
-   mvn clean install
+   src\main\java\project\A1_Files\Feedback
    ```
-
-3. Run the application:
+6. After running and reviewing the PDF, the JUnit tests can be ran by substituing the relevant information at the top of the file
 
    ```bash
-   java -cp target/automarker-1.0-SNAPSHOT.jar project.AutoMarkerMain
+   uncomment and fill in respective information after running for the first time for the extraction and evaluation
+   import project.FName_LName_ID_A1.ChatBotPlatform;
    ```
-
+7. Finally, observe the passing and failing JUnit tests.
 ## Key Classes
 
 - **AutoMarkerMain.java**: The main entry point of the application.
