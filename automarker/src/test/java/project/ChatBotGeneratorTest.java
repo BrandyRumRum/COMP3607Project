@@ -2,7 +2,8 @@ package project;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
-
+// uncomment and fill in respective information after running for the first time for the extraction and evaluation
+// import project.FName_LName_ID_A1.ChatBotGenerator;
 
 public class ChatBotGeneratorTest {
 
@@ -17,7 +18,7 @@ public class ChatBotGeneratorTest {
 
     @Test
     public void testGenerateChatBotLLMWithInvalidCode() {
-        assertEquals("ChatGPT-3.5", ChatBotGenerator.generateChatBotLLM(99), 
+        assertEquals("ChatGPT-3.5", ChatBotGenerator.generateChatBotLLM(99),
                 "Unknown code should generate default 'ChatGPT-3.5'.");
     }
 }
