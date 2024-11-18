@@ -2,6 +2,7 @@
 
 A Java-based automated grading tool designed to extract, compile, and evaluate Java student submissions from ZIP archives. This project utlizes the Observer, Factory and Template design patterns to achieve this.
 
+Ensure that the project is opened in the automarker folder and that the zip folder has a folder inside which contains all the java files
 ---
 
 ## **Overview**
