@@ -13,10 +13,6 @@ public class ChatBotSimulationTest {
 
     private final ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
 
-    @BeforeEach
-    void setUp() {
-        System.setOut(new PrintStream(outputStream));
-    }
 
     @Test
     void testHelloWorldPrinted() {
@@ -49,8 +45,6 @@ public class ChatBotSimulationTest {
         assertTrue(output.contains("Response from ChatGPT-3.5"), "Responses should include ChatGPT-3.5.");
         assertTrue(output.contains("Response from LLaMa"), "Responses should include LLaMa.");
     }
-
-    private PrintStream originalOut;
 
     @Test
     void testPrintChatBotList() {
