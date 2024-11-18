@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
-import project.Brandon_Ramcharitar_816037181_A1.ChatBotPlatform;
 
 public class ChatBotSimulationTest {
 
