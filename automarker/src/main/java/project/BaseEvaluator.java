@@ -26,7 +26,7 @@ public abstract class BaseEvaluator {
 
     // Calculate the final score and add it to feedback
     protected void calculateScore() {
-        feedback.add("Total Score: " + totalScore);
+        feedback.add("Score: " + totalScore);
     }
 
     // Cleanup and display feedback after evaluation
