@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import project.Brandon_Ramcharitar_816037181_A1.ChatBot;
 
 public class ChatBotTest {
     private ChatBot chatBot;
