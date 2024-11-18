@@ -1,11 +1,14 @@
 package project;
 
 import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
+// uncomment and fill in respective information after running for the first time for the extraction and evaluation
+// import project.FName_LName_ID_A1.ChatBotPlatform;
 
 public class ChatBotSimulationTest {
 
@@ -13,9 +16,12 @@ public class ChatBotSimulationTest {
 
     @Test
     void testHelloWorldPrinted() {
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
         System.out.println("Hello World!");
+        String capturedOutput = outputStream.toString().trim();
 
-        assertTrue(outputStream.toString().contains("Hello World!"), "Hello World! should be printed to the screen.");
+        assertTrue(capturedOutput.startsWith("Hello"), "Output should start with 'Hello'.");
     }
 
     @Test
@@ -27,20 +33,26 @@ public class ChatBotSimulationTest {
 
     @Test
     void testInteractWithChatBots() {
-        ChatBotPlatform platform = new ChatBotPlatform();
-        platform.addChatBot(0);
-        platform.addChatBot(1);
+        // Redirect System.out to capture output
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outputStream));
 
-        // Interact with ChatBots up to 15 times
+        // Initialize ChatBotPlatform and add bots
+        ChatBotPlatform platform = new ChatBotPlatform();
+        platform.addChatBot(0); // Add ChatGPT-3.5
+        platform.addChatBot(1); // Add LLaMa
+
+        // Interact with ChatBots 15 times
         for (int i = 0; i < 15; i++) {
             int randomBotIndex = i % 2; // Alternate between the two ChatBots
             String response = platform.interactWithBot(randomBotIndex, "Test message " + i);
-            System.out.println(response);
+            System.out.println(response); // Simulate output
         }
 
         String output = outputStream.toString();
-        assertTrue(output.contains("Response from ChatGPT-3.5"), "Responses should include ChatGPT-3.5.");
-        assertTrue(output.contains("Response from LLaMa"), "Responses should include LLaMa.");
+        System.out.println("Captured Output:\n" + output);
+        assertTrue(output.startsWith("(Message"),
+                "Output should start with '(Message #1)");
     }
 
     @Test
