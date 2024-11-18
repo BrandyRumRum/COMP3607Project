@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import project.Rajiv_Ramcharan_816034922_A1.ChatBot;
-
 // uncomment and fill in respective information after running for the first time for the extraction and evaluation
 // import project.FName_LName_ID_A1.ChatBot;
 
