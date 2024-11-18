@@ -11,7 +11,7 @@ import java.util.List;
 public class AutoMarkerMain {
 
     public static void main(String[] args) {
-        File zipFile = new File("src\\main\\java\\project\\A1_Files\\Brandon_Ramcharitar_816037181_A1.zip");
+        File zipFile = new File("src\\main\\java\\project\\A1_Files\\Fname_Lname_id_A1.zip");        //Insert respective information for zip file
         String destDirPath = new File("src\\main\\java\\project").getAbsolutePath();
         String compiledDirPath = new File("target/classes").getAbsolutePath();
         String outputDir = "src\\main\\java\\project\\A1_Files\\Feedback";
