@@ -1,6 +1,11 @@
+package project;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
+
 
 public class ChatBotPlatformTest {
     private ChatBotPlatform platform;
@@ -14,12 +19,13 @@ public class ChatBotPlatformTest {
     public void testAddChatBot() {
         // Test adding a chatbot when within the limit
         assertTrue(platform.addChatBot(1), "Should successfully add ChatBot when under limit.");
-        assertEquals(1, platform.bots.size(), "ChatBotPlatform should contain 1 bot.");
+        assertTrue(platform.getChatBotList().contains("Bot Number: 0"), "ChatBotPlatform should list the added bot.");
 
         // Test adding another chatbot
         assertTrue(platform.addChatBot(2), "Should successfully add another ChatBot.");
-        assertEquals(2, platform.bots.size(), "ChatBotPlatform should contain 2 bots.");
-    }
+        assertTrue(platform.getChatBotList().contains("Bot Number: 1"), "ChatBotPlatform should list the second added bot.");
+}
+
 
     @Test
     public void testAddChatBotWhenLimitReached() {
@@ -46,8 +52,8 @@ public class ChatBotPlatformTest {
 
     @Test
     public void testInteractWithBot() {
-        platform.addChatBot(1); // Adding "LLaMa"
-        platform.addChatBot(2); // Adding "Mistral7B"
+        platform.addChatBot(1);
+        platform.addChatBot(2);
 
         // Valid bot interaction
         String response1 = platform.interactWithBot(0, "Hello, LLaMa!");
@@ -56,7 +62,7 @@ public class ChatBotPlatformTest {
         String response2 = platform.interactWithBot(1, "Hello, Mistral7B!");
         assertTrue(response2.contains("Response from Mistral7B"), "Interaction with bot 1 should be successful.");
 
-        // Invalid bot interaction (out of range)
+        // Invalid bot interaction
         String responseInvalid = platform.interactWithBot(3, "Hello?");
         assertEquals("Incorrect Bot Number (3) Selected. Try again", responseInvalid, 
                 "Should return error message for invalid bot number.");
